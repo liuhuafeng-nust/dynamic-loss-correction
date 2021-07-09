@@ -70,7 +70,7 @@ test_transform = torchvision.transforms.Compose([
     torchvision.transforms.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))
 ])
 
-root = '/home/dmy/data/fg-web-data'
+root = './data/fg-web-data'
 print(os.path.join(root,data_dir, 'train'))
 train_data = Imagefolder_modified(os.path.join(root,data_dir, 'train'), transform=train_transform)
 train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True, num_workers=4, pin_memory=True)
