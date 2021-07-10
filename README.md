@@ -18,7 +18,7 @@
   wget https://wsnfg-sh.oss-cn-shanghai.aliyuncs.com/web-aircraft.tar.gz
   tar -xvf web-bird.tar.gz
   tar -xvf web-car.tar.gz
-  tar -xvf aircraft-car.tar.gz
+  tar -xvf web-aircraft.tar.gz
   ```
   
 -
