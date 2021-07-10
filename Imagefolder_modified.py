@@ -1,14 +1,16 @@
 from  torchvision.datasets import VisionDataset
-
 from PIL import Image
 
 import os
 import os.path
 import sys
 
+
+IMG_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.ppm', '.bmp', '.pgm', '.tif', '.tiff', '.webp')
+
+
 def has_file_allowed_extension(filename, extensions):
     """Checks if a file is an allowed extension.
-
     Args:
         filename (string): path to a file
         extensions (tuple of strings): extensions to consider (lowercase)
@@ -21,7 +23,6 @@ def has_file_allowed_extension(filename, extensions):
 
 def is_image_file(filename):
     """Checks if a file is an allowed image extension.
-
     Args:
         filename (string): path to a file
 
@@ -32,11 +33,18 @@ def is_image_file(filename):
 
 
 def make_dataset(dir, class_to_idx, extensions=None, is_valid_file=None):
+    """
+    Args:
+        dir(string): Root directory path.
+        class_to_idx(string): dictionary map class to idx
+        extensions(list): A list of allowed extensions
+        is_valid_file(function): A check function for valid image file
+    """
     images = []
     dir = os.path.expanduser(dir)
     if not ((extensions is None) ^ (is_valid_file is None)):
-
         raise ValueError("Both extensions and is_valid_file cannot be None or not None at the same time")
+        
     if extensions is not None:
         def is_valid_file(x):
             return has_file_allowed_extension(x, extensions)
@@ -147,9 +155,6 @@ class DatasetFolder(VisionDataset):
 
     def __len__(self):
         return len(self.samples)
-
-
-IMG_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.ppm', '.bmp', '.pgm', '.tif', '.tiff', '.webp')
 
 
 def pil_loader(path):
